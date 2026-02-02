@@ -1,1 +1,14 @@
 @import "tailwindcss";
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 10s linear infinite;
+}
+
+/* This makes it stop when you hover over a product */
+.animate-marquee:hover {
+  animation-play-state: paused;
+}

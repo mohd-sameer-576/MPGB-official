@@ -1,13 +1,15 @@
 import { Navigate, Outlet } from "react-router-dom";
-import { useAuth } from "../context/AuthContext";
 
 const ProtectedRoute = () => {
-  const { user, loading } = useAuth();
+  const token = localStorage.getItem("token");
 
-  if (loading) return <div className="p-10 text-center">Loading...</div>;
+  // If there is no token, redirect to login
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
 
-  // If no user is found in context, redirect to login
-  return user ? <Outlet /> : <Navigate to="/login" replace />;
+  // If token exists, show the Dashboard
+  return <Outlet />;
 };
 
 export default ProtectedRoute;
