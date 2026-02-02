@@ -9,18 +9,4 @@ const router = express.Router();
 router.get("/", getProducts);
 router.post("/", protect, adminOnly, upload.single("image"), addProduct);
 router.delete("/:id", protect, adminOnly, deleteProduct);
-router.post(
-  "/test-upload",
-  upload.single("image"),
-  (req, res) => {
-    console.log('test-upload req.file:', req.file);
-    if (!req.file) {
-      return res.status(400).json({ message: 'No file uploaded', file: null });
-    }
-    return res.json({
-      message: "Cloudinary connected",
-      file: req.file,
-    });
-  }
-);
 export default router;
