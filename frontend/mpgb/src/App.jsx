@@ -1,46 +1,36 @@
 import { Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Shop from "./pages/Shop";
+import Contact from "./pages/Contact";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="app-container">
+    <div className="min-h-screen">
+      {/* Navbar stays outside Routes so it shows on every page */}
+      <Navbar /> 
+      
       <Routes>
         {/* Public Routes */}
+        <Route path="/" element={<Home />} />
+        <Route path="/shop" element={<Shop />} />
+        <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
 
         {/* Protected Admin Routes */}
         <Route element={<ProtectedRoute />}>
-          {/* We wrap dashboard in a layout-like structure */}
-          <Route
-            path="/dashboard"
-            element={
-              <>
-                <Navbar />
-                <Dashboard />
-              </>
-            }
-          />
-          
-          {/* Example: Route for individual product details or editing */}
-          <Route 
-            path="/product/:id" 
-            element={
-              <>
-                <Navbar />
-                <div className="p-8 text-center">Product Detail View (Coming Soon)</div>
-              </>
-            } 
-          />
+          {/* Changed this to /admin/dashboard to avoid conflicts */}
+          <Route path="/admin/dashboard" element={<Dashboard />} />
         </Route>
 
-        {/* Global Redirect: If user goes to "/", send them to dashboard */}
-        <Route path="/" element={<Navigate to="/dashboard" replace />} />
-        
-        {/* 404 Catch-all */}
-        <Route path="*" element={<div className="h-screen flex items-center justify-center">404 - Page Not Found</div>} />
+        {/* THIS IS THE CULPRIT: 
+           If this is placed ABOVE other routes, it catches everything. 
+           It must be the very LAST route.
+        */}
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </div>
   );
