@@ -9,6 +9,9 @@ import './index.css';
 // Pages & Components
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
+import Home from './pages/Home';        // Add this
+import Shop from './pages/Shop';        // Add this
+import Contact from './pages/Contact';  // Add this
 import ProtectedRoute from './components/ProtectedRoute';
 import Navbar from './components/Navbar';
 
@@ -16,26 +19,24 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <BrowserRouter>
       <AuthProvider>
+        {/* Navbar stays here to appear on all pages */}
+        <Navbar /> 
+
         <Routes>
-          {/* Public Route */}
+          {/* --- Public Client Routes --- */}
+          <Route path="/" element={<Home />} />
+          <Route path="/shop" element={<Shop />} />
+          <Route path="/contact" element={<Contact />} />
           <Route path="/login" element={<Login />} />
 
-          {/* Private Routes Group */}
+          {/* --- Protected Admin Routes --- */}
           <Route element={<ProtectedRoute />}>
-            <Route
-              path="/dashboard"
-              element={
-                <div className="min-h-screen bg-gray-50">
-                  <Navbar />
-                  <Dashboard />
-                </div>
-              }
-            />
+            <Route path="/dashboard" element={<Dashboard />} />
           </Route>
 
-          {/* Automatic Redirects */}
-          <Route path="/" element={<Navigate to="/dashboard" replace />} />
-          <Route path="*" element={<div className="p-10 text-center">404 - Not Found</div>} />
+          {/* --- Fallbacks --- */}
+          {/* If they are at a broken link, send them Home instead of showing a blank 404 */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>
