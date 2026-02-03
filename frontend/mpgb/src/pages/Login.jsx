@@ -36,7 +36,7 @@ const Login = () => {
       >
         <div className="text-center mb-8">
           <h2 className="text-3xl font-black text-slate-900 tracking-tighter">
-            ETHNIC<span className="text-orange-600">VIBE.</span>
+            MPGB_<span className="text-orange-600">COLLECTION</span>
           </h2>
           <p className="text-slate-500 mt-2 font-medium">Admin Control Panel</p>
         </div>

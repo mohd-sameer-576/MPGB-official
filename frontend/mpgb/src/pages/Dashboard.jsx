@@ -69,7 +69,7 @@ const Dashboard = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex">
+    <div className="min-h-screen bg-slate-50 flex ">
       {/* Sidebar - Aesthetic Fixed Navigation */}
       <aside className="w-64 bg-slate-900 text-white hidden md:flex flex-col p-6 fixed h-full">
         <h2 className="text-2xl font-black mb-10 tracking-tight text-indigo-400">
@@ -88,17 +88,7 @@ const Dashboard = () => {
         </nav>
       </aside>
       {/* Mobile Header - Only shows on small screens */}
-      <header className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-50">
-        <h2 className="text-xl font-black tracking-tight text-indigo-400">
-          ADMIN
-        </h2>
-        <button
-          onClick={handleLogout}
-          className="flex items-center gap-2 text-slate-300 bg-slate-800 px-3 py-2 rounded-lg text-sm"
-        >
-          <FiLogOut /> Logout
-        </button>
-      </header>
+      
 
       {/* Main Content Area */}
       <main className="flex-1 md:ml-64 p-8">
@@ -246,6 +236,12 @@ const Dashboard = () => {
               </div>
             ))}
           </div>
+          <button
+            onClick={handleLogout}
+            className="md:col-span-2 bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 disabled:bg-slate-400 cursor-pointer"
+          >
+            <FiLogOut /> <span>Logout</span>
+          </button>
         </div>
       </main>
     </div>

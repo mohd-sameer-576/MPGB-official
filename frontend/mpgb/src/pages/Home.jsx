@@ -54,7 +54,7 @@ const Home = () => {
 
       {/* --- Simple Product Grid --- */}
       <section className="py-20 px-6 max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-4">
           <div>
             <h2 className="text-3xl font-bold text-slate-900 tracking-tight">Featured Items</h2>
             <p className="text-slate-500 mt-2">Handpicked quality, just for you.</p>
