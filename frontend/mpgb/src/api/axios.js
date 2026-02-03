@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://mpgb-official.onrender.com', // Match your backend port
+  baseURL: 'https://mpgb-official.onrender.com/api', // Match your backend port
 });
 
 API.interceptors.request.use((config) => {
