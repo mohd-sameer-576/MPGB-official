@@ -17,10 +17,26 @@ const Shop = () => {
     const getProducts = async () => {
       try {
         const res = await API.get('/products');
-        setProducts(res.data);
-        setFilteredProducts(res.data);
+        const data = res?.data;
+        let list = [];
+
+        // Normalize different API shapes to an array
+        if (Array.isArray(data)) {
+          list = data;
+        } else if (Array.isArray(data?.products)) {
+          list = data.products;
+        } else if (Array.isArray(data?.data)) {
+          list = data.data;
+        } else {
+          console.warn('Unexpected products response shape:', data);
+        }
+
+        setProducts(list);
+        setFilteredProducts(list);
       } catch (err) {
         console.error("Failed to fetch", err);
+        setProducts([]);
+        setFilteredProducts([]);
       } finally {
         setLoading(false);
       }
@@ -29,6 +45,7 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
+    if (!Array.isArray(products)) return;
     if (category === 'All') {
       setFilteredProducts(products);
     } else {
@@ -70,8 +87,8 @@ const Shop = () => {
 
         {/* Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-          {filteredProducts.map((product) => (
-            <div key={product._id} className="group cursor-pointer" onClick={() => setSelectedProduct(product)}>
+          {(Array.isArray(filteredProducts) ? filteredProducts : []).map((product) => (
+            <div key={product._id || product.id || product.name} className="group cursor-pointer" onClick={() => setSelectedProduct(product)}>
               <div className="relative aspect-3/4 overflow-hidden bg-slate-100 rounded-2xl mb-4">
                 <img 
                   src={product.image?.url || product.image} 
@@ -133,7 +150,7 @@ const Shop = () => {
                 <ul className="text-sm text-slate-500 space-y-2">
                   <li className="flex items-center">• Premium Quality Fabric</li>
                   <li className="flex items-center">• Authentic Ethnic Design</li>
-                  <li className="flex items-center">• Limited Peace</li>
+                  <li className="flex items-center">• Limited Piece</li>
                 </ul>
               </div>
             </div>
