@@ -87,6 +87,18 @@ const Dashboard = () => {
           </button>
         </nav>
       </aside>
+      {/* Mobile Header - Only shows on small screens */}
+      <header className="md:hidden bg-slate-900 text-white p-4 flex justify-between items-center sticky top-0 z-50">
+        <h2 className="text-xl font-black tracking-tight text-indigo-400">
+          ADMIN
+        </h2>
+        <button
+          onClick={handleLogout}
+          className="flex items-center gap-2 text-slate-300 bg-slate-800 px-3 py-2 rounded-lg text-sm"
+        >
+          <FiLogOut /> Logout
+        </button>
+      </header>
 
       {/* Main Content Area */}
       <main className="flex-1 md:ml-64 p-8">
