@@ -127,7 +127,7 @@ const Dashboard = () => {
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-medium text-slate-600">
-                  Price ($)
+                  Price (₹)
                 </label>
                 <input
                   required

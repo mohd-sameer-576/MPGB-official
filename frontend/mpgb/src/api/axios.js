@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'http://localhost:3000/api', // Match your backend port
+  baseURL: 'https://mpgb-collection.netlify.app/', // Match your backend port
 });
 
 API.interceptors.request.use((config) => {

@@ -78,7 +78,7 @@ const Home = () => {
               <h3 className="text-lg font-bold text-slate-800 group-hover:text-indigo-600 transition-colors">
                 {p.name}
               </h3>
-              <p className="text-slate-500 font-medium">${p.price}</p>
+              <p className="text-slate-500 font-medium">₹{p.price}</p>
             </Link>
           ))}
         </div>
