@@ -213,7 +213,7 @@ const Dashboard = () => {
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
                   />
                   <div className="absolute top-3 right-3 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-slate-800">
-                    ${p.price}
+                    ₹{p.price}
                   </div>
                 </div>
                 <div className="p-5">

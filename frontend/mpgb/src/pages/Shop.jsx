@@ -54,7 +54,8 @@ const Shop = () => {
   }, [category, products]);
 
   if (loading) return (
-    <div className="flex justify-center items-center h-screen bg-white">
+    <div className="flex flex-col justify-center items-center h-screen bg-white">
+    <h2 className='text-2xl font-semibold'>Fetching Products please wait</h2>
       <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-600"></div>
     </div>
   );
