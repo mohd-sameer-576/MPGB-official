@@ -45,13 +45,18 @@ const Shop = () => {
   }, []);
 
   useEffect(() => {
-    if (!Array.isArray(products)) return;
-    if (category === 'All') {
-      setFilteredProducts(products);
-    } else {
-      setFilteredProducts(products.filter(p => p.category === category));
-    }
-  }, [category, products]);
+  if (!Array.isArray(products)) return;
+
+  if (category === 'All') {
+    setFilteredProducts(products);
+  } else {
+    setFilteredProducts(
+      products.filter(
+        (p) => (p.category || '').toLowerCase() === category.toLowerCase()
+      )
+    );
+  }
+}, [category, products]);
 
   if (loading) return (
     <div className="flex flex-col justify-center items-center h-screen bg-white">

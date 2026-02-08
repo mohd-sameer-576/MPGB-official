@@ -9,7 +9,7 @@ const Dashboard = () => {
   const [formData, setFormData] = useState({
     name: "",
     price: "",
-    category: "",
+    category: "Fancy Material",
     description: "",
   });
   const [image, setImage] = useState(null);
@@ -79,12 +79,6 @@ const Dashboard = () => {
           <div className="flex items-center gap-3 text-indigo-300 bg-slate-800 p-3 rounded-lg">
             <FiPackage /> <span>Inventory</span>
           </div>
-          <button
-            onClick={handleLogout}
-            className="flex items-center gap-3 text-slate-400 hover:text-white transition p-3 hover:border-2 rounded-lg cursor-pointer"
-          >
-            <FiLogOut /> <span>Logout</span>
-          </button>
         </nav>
       </aside>
       {/* Mobile Header - Only shows on small screens */}
@@ -152,9 +146,9 @@ const Dashboard = () => {
                   }
                   value={formData.category}
                 >
-                  <option value="">Fancy Material</option>
-                  <option value="Saree">Cotton Material</option>
-                  <option value="Kurti">linen Cotton Material</option>
+                  <option value="Fancy Material">Fancy Material</option>
+                  <option value="Cotton Material">Cotton Material</option>
+                  <option value="linen Cotton Material">linen Cotton Material</option>
                   {/* Add the rest of your categories here */}
                 </select>
               </div>
@@ -233,7 +227,7 @@ const Dashboard = () => {
           </div>
           <button
             onClick={handleLogout}
-            className="md:col-span-2 bg-indigo-600 text-white font-bold py-3 mt-5 w-full flex rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 disabled:bg-slate-400 cursor-pointer"
+            className="md:col-span-2 bg-indigo-600 text-white font-bold py-3 mt-5 w-full flex items-center justify-center gap-2 rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 disabled:bg-slate-400 cursor-pointer"
           >
             <FiLogOut /> <span>Logout</span>
           </button>

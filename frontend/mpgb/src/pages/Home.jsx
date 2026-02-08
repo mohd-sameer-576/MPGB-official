@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import API from "../api/axios";
-import { ArrowRight } from "lucide-react";
-
+import { ArrowRight,X, Tag } from "lucide-react";
 const Home = () => {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -68,7 +67,7 @@ const Home = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((p) => (
-            <div className="group cursor-pointer" onClick={() => setSelectedProduct(product)}>
+            <div className="group cursor-pointer" key={p._id || p.id || p.name} onClick={() => setSelectedProduct(p)}>
               <div className="aspect-4/5 overflow-hidden rounded-2xl bg-gray-100 mb-4">
                 <img
                   src={p.image?.url}
@@ -83,6 +82,7 @@ const Home = () => {
             </div>
           ))}
         </div>
+        
         {selectedProduct && (
                 <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300 ">
                   <div className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl flex flex-col md:flex-row relative ">
