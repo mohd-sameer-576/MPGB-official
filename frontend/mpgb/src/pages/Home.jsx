@@ -5,6 +5,7 @@ import { ArrowRight } from "lucide-react";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
+  const [selectedProduct, setSelectedProduct] = useState(null);
 
   useEffect(() => {
     const fetchFeatured = async () => {
@@ -67,7 +68,7 @@ const Home = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((p) => (
-            <Link key={p.id} to={`/product/${p.id}`} className="group">
+            <div className="group cursor-pointer" onClick={() => setSelectedProduct(product)}>
               <div className="aspect-4/5 overflow-hidden rounded-2xl bg-gray-100 mb-4">
                 <img
                   src={p.image?.url}
@@ -79,9 +80,54 @@ const Home = () => {
                 {p.name}
               </h3>
               <p className="text-slate-500 font-medium">₹{p.price}</p>
-            </Link>
+            </div>
           ))}
         </div>
+        {selectedProduct && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8 bg-black/60 backdrop-blur-sm animate-in fade-in duration-300 ">
+                  <div className="bg-white w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl flex flex-col md:flex-row relative ">
+                    
+                    {/* Close Button */}
+                    <button 
+                      onClick={() => setSelectedProduct(null)}
+                      className="absolute top-4 right-4 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full hover:bg-red-600 transition-colors border border-slate-100 cursor-pointer"
+                    >
+                      <X className="w-6 h-6 text-slate-800" />
+                    </button>
+        
+                    {/* Left: Full Size Image */}
+                    <div className="w-full md:w-1/2 bg-slate-100 h-100 md:h-auto">
+                      <img 
+                        src={selectedProduct.image?.url || selectedProduct.image} 
+                        alt={selectedProduct.name}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+        
+                    {/* Right: Product Details */}
+                    <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                      <span className="inline-flex items-center px-3 py-1 bg-orange-50 text-orange-600 text-xs font-bold rounded-full mb-4 w-fit uppercase">
+                        <Tag className="w-3 h-3 mr-1" /> {selectedProduct.category}
+                      </span>
+                      <h2 className="text-3xl md:text-4xl font-black text-slate-900 mb-2 leading-tight">
+                        {selectedProduct.name}
+                      </h2>
+                      <p className="text-2xl font-bold text-orange-600 mb-6">₹{selectedProduct.price}</p>
+                      
+                      <div className="space-y-4 mb-8">
+                        <p className="text-slate-600 leading-relaxed">
+                          {selectedProduct.description || "Indulge in the elegance of this premium piece. Crafted with meticulous attention to detail, this garment combines traditional aesthetics with modern comfort."}
+                        </p>
+                        <ul className="text-sm text-slate-500 space-y-2">
+                          <li className="flex items-center">• Premium Quality Fabric</li>
+                          <li className="flex items-center">• Authentic Ethnic Design</li>
+                          <li className="flex items-center">• Limited Piece</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              )}
       </section>
     </div>
   );

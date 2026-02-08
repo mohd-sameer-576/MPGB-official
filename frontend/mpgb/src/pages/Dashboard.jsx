@@ -152,14 +152,9 @@ const Dashboard = () => {
                   }
                   value={formData.category}
                 >
-                  <option value="">Kaftan</option>
-                  <option value="Saree">Saree</option>
-                  <option value="Salwar Kameez">Palazoo set</option>
-                  <option value="Lehenga Choli">Lehenga Choli</option>
-                  <option value="Kurti">Kurti</option>
-                  <option value="Anarkali">Anarkali</option>
-                  <option value="Anarkali">Gown</option>
-                  <option value="Anarkali">Sharara Set</option>
+                  <option value="">Fancy Material</option>
+                  <option value="Saree">Cotton Material</option>
+                  <option value="Kurti">linen Cotton Material</option>
                   {/* Add the rest of your categories here */}
                 </select>
               </div>
@@ -238,7 +233,7 @@ const Dashboard = () => {
           </div>
           <button
             onClick={handleLogout}
-            className="md:col-span-2 bg-indigo-600 text-white font-bold py-3 rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 disabled:bg-slate-400 cursor-pointer"
+            className="md:col-span-2 bg-indigo-600 text-white font-bold py-3 mt-5 w-full flex rounded-lg hover:bg-indigo-700 transition shadow-lg shadow-indigo-200 disabled:bg-slate-400 cursor-pointer"
           >
             <FiLogOut /> <span>Logout</span>
           </button>

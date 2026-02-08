@@ -11,7 +11,7 @@ const Shop = () => {
   // State for the Modal
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  const categories = ['All', 'Saree', 'Lehenga Choli', 'Kurti', 'Anarkali', 'Gown', 'Palazzo Set', 'Sharara Set', 'Kaftan'];
+  const categories = ['All', 'Fancy Material', 'Cotton Material', 'linen Cotton Material'];
 
   useEffect(() => {
     const getProducts = async () => {
